@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Imagens</title>
+        <link rel="stylesheet" href="./_includes/style.css">
+    </head>
+    <body>
+        <div id="navbar">
+            <a href="./Index.html" id="logo">Site</a>
+            <div id="navbar-right">
+              <a href="./Index.html">Home</a>
+              <a href="./Imagens.html">Imagens</a>
+              <a href="./Tecnologias.html">Tecnologias</a>
+              <a href="./Tabelas.html">Tabelas</a>
+              <a href="./Midias.html">Midias</a>
+            </div>
+        </div>
+        <div style="margin-top:170px;">
+        <h1>Imagens</h1>
+
+        <h2>Exemplo 1</h2>
+        <img src="./flores-janela.jpg" alt="Flores em uma janela" title="Flores em uma janela" width="12%">
+        <h2>Exemplo 2</h2>
+        <img src="./_images/flores-estrada.jpg" alt="Flores em uma estrada" title="Flores em uma estrada" width="25%">
+        <h2>Exemplo 3</h2>
+        <img src="https://i0.wp.com/www.updateordie.com/wp-content/uploads/2022/03/a881c63bfdb90a254eeedcb3_rw_1920.jpg?resize=800%2C496&ssl=1" alt="Caricatura de Steve Jobs" title="Caricatura de Steve Jobs" width="25%">
+        </div>
+
+        <script>
+            // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+            window.onscroll = function() {scrollFunction()};
+            
+            function scrollFunction() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("navbar").style.padding = "30px 10px";
+                document.getElementById("logo").style.fontSize = "25px";
+              } else {
+                document.getElementById("navbar").style.padding = "50px 10px";
+                document.getElementById("logo").style.fontSize = "35px";
+              }
+            }
+        </script>
+    </body>
+</html>

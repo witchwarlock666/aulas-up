@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Midias</title>
+        <link rel="stylesheet" href="./_includes/style.css">
+    </head>
+    <body>
+        <div id="navbar">
+            <a href="./Index.html" id="logo">Site</a>
+            <div id="navbar-right">
+              <a href="./Index.html">Home</a>
+              <a href="./Imagens.html">Imagens</a>
+              <a href="./Tecnologias.html">Tecnologias</a>
+              <a href="./Tabelas.html">Tabelas</a>
+              <a href="./Midias.html">Midias</a>
+            </div>
+        </div>
+        <div id="main" style="margin-top:170px;">
+            <h1>Mídias</h1>
+            <h2>Videos</h2>
+            <video width="30%" title="Video" controls>
+                <source src="./_media/birdbox_studio.mp4" type="video/mp4">
+            </video>
+            <h2>Videos Youtube</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dXHkWE4JSOA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h2>Audio</h2>
+            <audio controls>
+                <source src="./_media/cavalo.ogv" type="audio/ogg">
+            </audio>
+        </div>
+
+        <script>
+            // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+            window.onscroll = function() {scrollFunction()};
+            
+            function scrollFunction() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("navbar").style.padding = "30px 10px";
+                document.getElementById("logo").style.fontSize = "25px";
+              } else {
+                document.getElementById("navbar").style.padding = "50px 10px";
+                document.getElementById("logo").style.fontSize = "35px";
+              }
+            }
+        </script>
+    </body>
+</html>
