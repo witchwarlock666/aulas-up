@@ -1,0 +1,64 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+header, footer{
+    background-color: #fff2cc;
+}
+footer{
+    text-align: center;
+    height: 2   0px;
+}
+header img{
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    
+}
+header nav{
+    float: right;
+    margin-top: 50px; ;
+    margin-right: 40px;
+    font-size: 30px;
+
+}
+nav a:hover{
+        background-color: orange;
+} 
+header ul li{
+    display: inline-block;
+}
+main{
+    padding: 50px;
+    
+
+}
+div{
+    float:right;
+    
+}
+
+
+
+h1{
+    color: orange;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+h2{
+    font-size: 30px;
+}
+
+
+
+a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 500px;
+}
+
