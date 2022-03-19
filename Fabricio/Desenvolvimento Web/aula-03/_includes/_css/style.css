@@ -13,6 +13,7 @@ header {
     border-bottom: solid black 1px;
     margin-bottom: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 1px 2px 2px 1px rgb(51, 51, 51);
 }
 
 header img {
@@ -58,9 +59,17 @@ nav a:hover {
     color: black;
   }
 
-table {
+.main-content {
     margin: 4px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.main-content tr {
+    box-shadow: 2px 2px black;
+}
+.main-content td {
+    border-bottom: 15px solid transparent;
+    border-top: 15px solid transparent;
 }
 
 .anuncios {
@@ -83,7 +92,6 @@ footer {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #ddd;
     text-align: center;
-    position: fixed;
     height: 20px;
     bottom: 0;
     width: 100%;
