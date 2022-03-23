@@ -19,6 +19,7 @@ public class randomvetor {
             }
             System.out.println(vet[i]);
         }
+        input.close();
 
     }
 }

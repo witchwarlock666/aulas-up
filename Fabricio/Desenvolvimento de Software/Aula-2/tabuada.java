@@ -6,7 +6,7 @@ public class tabuada {
             for (j = 1; j <= 10; j++) {
 
                 if (j < 10) {
-                    System.out.print("| " + i + "x" + j + " = " + i*j + " ");
+                    System.out.print("| " + i + "x" + j + " = " + i*j + " |\t");
                 }
                 else {
                     System.out.println("| " + i + "x" + j + " = " + i*j + " |");
