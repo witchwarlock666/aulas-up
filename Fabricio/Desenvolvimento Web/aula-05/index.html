@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Includes/style.css">
+    <title>Document</title>
+</head>
+<body onload="main()">
+    <header id="header" class="header">header</header>
+    <div id="pai" class="pai">
+        <div id="filho1" class="filho"></div>
+        <div id="filho2" class="filho"></div>
+    </div>
+    <footer id="footer" class="footer">footer</footer>
+
+    <script>
+        function main() {
+            var header = "#header";
+            var pai = "#pai";
+            var filho1 = "#filho1";
+            var filho2 = "#filho2";
+            var footer = "#footer";
+
+            changeColor(header);
+            changeColor(pai);
+            changeColor(filho1);
+            changeColor(filho2);
+            changeColor(footer);
+
+        }
+        function changeColor(x) {
+            console.log(document.querySelector(x));
+        }
+    </script>
+</body>
+</html>

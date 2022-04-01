@@ -1,0 +1,34 @@
+body {
+    margin: 0px 10px;
+}
+
+.pai {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 550px;
+}
+
+.filho {
+    /* height: 150px; */
+    width: 49%;
+    background-color: red;
+    border: 1px solid black;
+    /* box-shadow: 2px 2px 1px black; */
+}
+
+.header {
+    text-align: center;
+    height: 50px;
+    background-color: blue;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.footer {
+    text-align: center;
+    height: 50px;
+    background-color: blue;
+    margin-top: 20px;
+    border: 1px solid black;
+}
