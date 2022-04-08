@@ -1,0 +1,41 @@
+.header {
+    height: 70px;
+    background-color: aqua;
+    line-height: 70px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    grid-area: header;
+}
+
+.pai {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+    grid-template-areas: "header header header header header header" "filho-um filho-dois filho-dois filho-dois filho-dois filho-dois" "footer footer footer footer footer footer";
+}
+
+.filho{
+    border-radius: 5px;
+    padding: 10px;
+    background-color: orange;
+    border: 2px solid black;
+    text-align: justify;
+    min-width: 250px;
+}
+
+.filho-um {
+    grid-area: filho-um;
+}
+
+.filho-dois {
+    grid-area: filho-dois;
+}
+
+.footer {
+    height: 35px;
+    background-color: aqua;
+    line-height: 35px;
+    padding-left: 5px;
+    margin-top: 20px;
+    grid-area: footer;
+}
