@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./Includes/style.css">
     <title>Document</title>
 </head>
+
 <body onload="main()">
     <header id="header" class="header">header</header>
     <div id="pai" class="pai">
@@ -17,22 +19,49 @@
 
     <script>
         function main() {
-            var header = "#header";
-            var pai = "#pai";
-            var filho1 = "#filho1";
-            var filho2 = "#filho2";
-            var footer = "#footer";
+            var header = "header";
+            var filho1 = "filho1";
+            var filho2 = "filho2";
+            var footer = "footer";
+
+            var blue = window.getComputedStyle(document.getElementById(header)).backgroundColor;
+            var red = window.getComputedStyle(document.getElementById(filho1)).backgroundColor;
+
+            document.getElementById(header).style.backgroundColor = blue;
+            document.getElementById(filho1).style.backgroundColor = red;
+            document.getElementById(filho2).style.backgroundColor = red;
+            document.getElementById(footer).style.backgroundColor = blue;
 
             changeColor(header);
-            changeColor(pai);
             changeColor(filho1);
             changeColor(filho2);
             changeColor(footer);
 
+            main();
+
         }
         function changeColor(x) {
-            console.log(document.querySelector(x));
+            var blue = window.getComputedStyle(document.getElementById("header")).backgroundColor;
+            var red = window.getComputedStyle(document.getElementById("filho1")).backgroundColor;
+            var color = document.getElementById(x).style.backgroundColor;
+
+            if (color === blue) {
+                document.getElementById(x).style.backgroundColor = red;
+            }
+            else {
+                document.getElementById(x).style.backgroundColor = blue;
+            }
+        }
+
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds) {
+                    break;
+                }
+            }
         }
     </script>
 </body>
+
 </html>
