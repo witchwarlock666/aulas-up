@@ -29,7 +29,9 @@ public class FrmCalculadora extends JFrame {
         JPanel pnlNorte = new JPanel(new BorderLayout());
         this.add(pnlNorte, BorderLayout.NORTH);
         this.txtDisplay = new JTextField();
+        txtDisplay.setEditable(false);
         pnlNorte.add(this.txtDisplay, BorderLayout.CENTER);
+        txtDisplay.setText("0");
 
         // JPanel Centro
         JPanel pnlCentro = new JPanel(new GridLayout(5, 4, 5, 5));
@@ -42,33 +44,39 @@ public class FrmCalculadora extends JFrame {
                 calculadora.setOperando1(0);
                 calculadora.setOperando2(0);
                 calculadora.setAguardando(false);
-                txtDisplay.setText("");
+                txtDisplay.setText("0");
             }
         });         
         pnlCentro.add(btn);
 
-        btn = new JButton("x\u00B2");
+        btn = new JButton("<html>a<sup>b</sup></html>");
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
                 calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperando2(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperacao(Operacao.MULTIPLICACAO);
-                txtDisplay.setText(String.format("%f", calculadora.calcular()));
+                calculadora.setOperacao(Operacao.POTENCIA);
+                txtDisplay.setText("0");
                 calculadora.setAguardando(true);
             }
         });        
         pnlCentro.add(btn);
 
-        btn = new JButton("DEL");
+        btn = new JButton("\u232B");
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
                 if (txtAntigo.length() > 0) {
                     txtDisplay.setText(txtAntigo.substring(0, txtAntigo.length() - 1));
-                }                
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                if (txtAntigo.length() == 1) {
+                    txtDisplay.setText("0");
+                }
             }
         });         
         pnlCentro.add(btn);
@@ -78,10 +86,12 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
                 calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
                 calculadora.setOperacao(Operacao.MULTIPLICACAO);
                 calculadora.setAguardando(true);
-                txtDisplay.setText("");
+                txtDisplay.setText("0");
             }
         });        
         pnlCentro.add(btn);
@@ -91,7 +101,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
+                if (!txtAntigo.equals("0")) {
                 txtDisplay.setText(txtAntigo.concat("7"));
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("7");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -101,7 +118,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("8"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("8"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("8");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -111,7 +135,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("9"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("9"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("9");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -121,10 +152,12 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
                 calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
                 calculadora.setOperacao(Operacao.DIVISAO);
                 calculadora.setAguardando(true);
-                txtDisplay.setText("");
+                txtDisplay.setText("0");
             }
         });     
         pnlCentro.add(btn);
@@ -134,7 +167,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("4"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("4"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("4");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -144,7 +184,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("5"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("5"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("5");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -154,7 +201,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("6"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("6"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("6");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -164,10 +218,12 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
                 calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
                 calculadora.setOperacao(Operacao.SOMA);
                 calculadora.setAguardando(true);
-                txtDisplay.setText("");
+                txtDisplay.setText("0");
             }
         });        
         pnlCentro.add(btn);
@@ -177,7 +233,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("1"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("1"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("1");
+                }
             }
         });
         pnlCentro.add(btn);
@@ -187,7 +250,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("2"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("2"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("2");
+                }
             }
         });
         pnlCentro.add(btn);
@@ -197,7 +267,14 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("3"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("3"));
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                }
+                else {
+                    txtDisplay.setText("3");
+                }
             }
         });        
         pnlCentro.add(btn);
@@ -207,15 +284,34 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
                 calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
                 calculadora.setOperacao(Operacao.SUBTRACAO);
                 calculadora.setAguardando(true);
-                txtDisplay.setText("");
+                txtDisplay.setText("0");
             }
         });     
         pnlCentro.add(btn);
 
         btn = new JButton("+/-");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {                
+                String txtAntigo = txtDisplay.getText();
+                if (txtAntigo.charAt(0) == '-') {
+                    txtAntigo = txtAntigo.substring(1);
+                }
+                else {
+                    if (!txtAntigo.equals("0")) {
+                        txtAntigo = "-" + txtAntigo;
+                    }
+                }
+                txtDisplay.setText(txtAntigo);
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
+            }
+        });     
         pnlCentro.add(btn);
 
         btn = new JButton("0");
@@ -223,7 +319,11 @@ public class FrmCalculadora extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
-                txtDisplay.setText(txtAntigo.concat("0"));
+                if (!txtAntigo.equals("0")) {
+                    txtDisplay.setText(txtAntigo.concat("0"));
+                }
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                txtAntigo = removeCommas(txtAntigo);
             }
         });        
         pnlCentro.add(btn);
@@ -236,6 +336,7 @@ public class FrmCalculadora extends JFrame {
                 if (!txtAntigo.contains(",")) {
                     txtDisplay.setText(txtAntigo.concat(","));
                 }
+                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
             }
         });          
         pnlCentro.add(btn);
@@ -246,8 +347,21 @@ public class FrmCalculadora extends JFrame {
             public void actionPerformed(ActionEvent e) { 
                 if (calculadora.isAguardando()) {
                     String txtAntigo = txtDisplay.getText();
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
                     calculadora.setOperando2(Double.parseDouble(txtAntigo.replace(",", ".")));
-                    txtDisplay.setText(String.format("%f", calculadora.calcular()));
+                    String dividedByZero = String.format("%f", calculadora.calcular());
+                    if (dividedByZero.equals("Infinity") || dividedByZero.equals("-Infinity")) {
+                        if (calculadora.getOperacao() == Operacao.DIVISAO && calculadora.getOperando2() == 0) {
+                        txtDisplay.setText("Não é possivel dividir por zero");
+                        }
+                        else {
+                            txtDisplay.setText("Numero muito grande");
+                        }
+                    }
+                    else {
+                        txtDisplay.setText(String.format("%f", calculadora.calcular()));
+                    }
                     calculadora.setAguardando(false);
                 }
             }
@@ -257,5 +371,18 @@ public class FrmCalculadora extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public String removeCommas(String txt) {
+        String[] arr = txt.split(",");
+
+        if (arr.length > 2) {
+            txt = arr[0] + "," + arr[1];
+
+            for (int i = 2; i < arr.length; i++) {
+                txt += arr[i];
+            }
+        }
+
+        return txt;
     }
 }
