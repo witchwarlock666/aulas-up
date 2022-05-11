@@ -1,22 +1,27 @@
 package grafica;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 import logica.Calculadora;
 import logica.Calculadora.Operacao;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FrmCalculadora extends JFrame {
     private JTextField txtDisplay;
     private Calculadora calculadora;
+
     public FrmCalculadora() {
         // Instanciar a Calculadora
         this.calculadora = new Calculadora();
@@ -37,8 +42,12 @@ public class FrmCalculadora extends JFrame {
         JPanel pnlCentro = new JPanel(new GridLayout(5, 4, 5, 5));
         this.add(pnlCentro, BorderLayout.CENTER);
 
+        InputMap inputMap = pnlCentro.getInputMap(
+            JComponent.WHEN_IN_FOCUSED_WINDOW
+        );
+
         JButton btn = new JButton("C");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 calculadora.setOperando1(0);
@@ -48,24 +57,39 @@ public class FrmCalculadora extends JFrame {
             }
         });         
         pnlCentro.add(btn);
+        inputMap.put(KeyStroke.getKeyStroke('c'), 'c');
+        pnlCentro.getActionMap().put('c', (AbstractAction) btn.getActionListeners()[0]);
 
         btn = new JButton("<html>a<sup>b</sup></html>");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                String txtAntigo = txtDisplay.getText();
-                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
-                txtAntigo = removeCommas(txtAntigo);
-                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperacao(Operacao.POTENCIA);
-                txtDisplay.setText("0");
-                calculadora.setAguardando(true);
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String txtAntigo = txtDisplay.getText();
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                    if (txtAntigo == "") {
+                        txtAntigo = "0";
+                    }
+                    calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                    calculadora.setOperacao(Operacao.POTENCIA);
+                    txtDisplay.setText("0");
+                    calculadora.setAguardando(true);
+                }
+                catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    txtDisplay.setText("Erro");
+                    calculadora.setAguardando(false);
+                }
+                
             }
         });        
         pnlCentro.add(btn);
+        inputMap.put(KeyStroke.getKeyStroke('p'), 'p');
+        pnlCentro.getActionMap().put('p', (AbstractAction) btn.getActionListeners()[0]);
 
         btn = new JButton("\u232B");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -80,24 +104,38 @@ public class FrmCalculadora extends JFrame {
             }
         });         
         pnlCentro.add(btn);
+        inputMap.put(KeyStroke.getKeyStroke("BACK_SPACE"), 'b');
+        pnlCentro.getActionMap().put('b', (AbstractAction) btn.getActionListeners()[0]);
 
         btn = new JButton("*");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                String txtAntigo = txtDisplay.getText();
-                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
-                txtAntigo = removeCommas(txtAntigo);
-                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperacao(Operacao.MULTIPLICACAO);
-                calculadora.setAguardando(true);
-                txtDisplay.setText("0");
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String txtAntigo = txtDisplay.getText();
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                    if (txtAntigo == "") {
+                        txtAntigo = "0";
+                    }
+                    calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                    calculadora.setOperacao(Operacao.MULTIPLICACAO);
+                    calculadora.setAguardando(true);
+                    txtDisplay.setText("0");
+                }         
+                catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    txtDisplay.setText("Erro");
+                    calculadora.setAguardando(false);
+                }
             }
         });        
         pnlCentro.add(btn);
+        inputMap.put(KeyStroke.getKeyStroke('*'), '*');
+        pnlCentro.getActionMap().put('*', (AbstractAction) btn.getActionListeners()[0]);
 
         btn = new JButton("7");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -112,9 +150,11 @@ public class FrmCalculadora extends JFrame {
             }
         });        
         pnlCentro.add(btn);
+        inputMap.put(KeyStroke.getKeyStroke('7'), '7');
+        pnlCentro.getActionMap().put('7', (AbstractAction) btn.getActionListeners()[0]);
 
         btn = new JButton("8");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -131,7 +171,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("9");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -148,22 +188,32 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("/");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                String txtAntigo = txtDisplay.getText();
-                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
-                txtAntigo = removeCommas(txtAntigo);
-                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperacao(Operacao.DIVISAO);
-                calculadora.setAguardando(true);
-                txtDisplay.setText("0");
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String txtAntigo = txtDisplay.getText();
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                    if (txtAntigo == "") {
+                        txtAntigo = "0";
+                    }
+                    calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                    calculadora.setOperacao(Operacao.DIVISAO);
+                    calculadora.setAguardando(true);
+                    txtDisplay.setText("0");
+                }
+                catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    txtDisplay.setText("Erro");
+                    calculadora.setAguardando(false);
+                }
             }
         });     
         pnlCentro.add(btn);
 
         btn = new JButton("4");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -180,7 +230,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("5");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -197,7 +247,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("6");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -214,22 +264,32 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("+");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                String txtAntigo = txtDisplay.getText();
-                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
-                txtAntigo = removeCommas(txtAntigo);
-                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperacao(Operacao.SOMA);
-                calculadora.setAguardando(true);
-                txtDisplay.setText("0");
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String txtAntigo = txtDisplay.getText();
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                    if (txtAntigo == "") {
+                        txtAntigo = "0";
+                    }
+                    calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                    calculadora.setOperacao(Operacao.SOMA);
+                    calculadora.setAguardando(true);
+                    txtDisplay.setText("0");
+                }
+                catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    txtDisplay.setText("Erro");
+                    calculadora.setAguardando(false);
+                }
             }
         });        
         pnlCentro.add(btn);
 
         btn = new JButton("1");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -246,7 +306,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("2");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -263,7 +323,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("3");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -280,22 +340,32 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("-");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                String txtAntigo = txtDisplay.getText();
-                txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
-                txtAntigo = removeCommas(txtAntigo);
-                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
-                calculadora.setOperacao(Operacao.SUBTRACAO);
-                calculadora.setAguardando(true);
-                txtDisplay.setText("0");
+            public void actionPerformed(ActionEvent e) {    
+                try {
+                    String txtAntigo = txtDisplay.getText();
+                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                    txtAntigo = removeCommas(txtAntigo);
+                    if (txtAntigo == "") {
+                        txtAntigo = "0";
+                    }
+                    calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                    calculadora.setOperacao(Operacao.SUBTRACAO);
+                    calculadora.setAguardando(true);
+                    txtDisplay.setText("0");
+                }
+                catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    txtDisplay.setText("Erro");
+                    calculadora.setAguardando(false);
+                }
             }
         });     
         pnlCentro.add(btn);
 
         btn = new JButton("+/-");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -315,7 +385,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("0");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();
@@ -329,7 +399,7 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton(",");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                 String txtAntigo = txtDisplay.getText();                
@@ -342,27 +412,34 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("=");
-        btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) { 
                 if (calculadora.isAguardando()) {
-                    String txtAntigo = txtDisplay.getText();
-                    txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
-                    txtAntigo = removeCommas(txtAntigo);
-                    calculadora.setOperando2(Double.parseDouble(txtAntigo.replace(",", ".")));
-                    String dividedByZero = String.format("%f", calculadora.calcular());
-                    if (dividedByZero.equals("Infinity") || dividedByZero.equals("-Infinity")) {
-                        if (calculadora.getOperacao() == Operacao.DIVISAO && calculadora.getOperando2() == 0) {
-                        txtDisplay.setText("Não é possivel dividir por zero");
+                    try {
+                        String txtAntigo = txtDisplay.getText();
+                        txtAntigo = txtAntigo.replaceAll("[a-zA-Z]", "");
+                        txtAntigo = removeCommas(txtAntigo);
+                        calculadora.setOperando2(Double.parseDouble(txtAntigo.replace(",", ".")));
+                        String dividedByZero = String.format("%f", calculadora.calcular());
+                        if (dividedByZero.equals("Infinity") || dividedByZero.equals("-Infinity")) {
+                            if (calculadora.getOperacao() == Operacao.DIVISAO && calculadora.getOperando2() == 0) {
+                            txtDisplay.setText("Não é possivel dividir por zero");
+                            }
+                            else {
+                                txtDisplay.setText("Numero muito grande");
+                            }
                         }
                         else {
-                            txtDisplay.setText("Numero muito grande");
+                            txtDisplay.setText(String.format("%f", calculadora.calcular()));
                         }
+                        calculadora.setAguardando(false);
                     }
-                    else {
-                        txtDisplay.setText(String.format("%f", calculadora.calcular()));
+                    catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                        txtDisplay.setText("Erro");
+                        calculadora.setAguardando(false);
                     }
-                    calculadora.setAguardando(false);
                 }
             }
         });         
@@ -371,7 +448,10 @@ public class FrmCalculadora extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        pnlCentro.requestFocus();
     }
+
     public String removeCommas(String txt) {
         String[] arr = txt.split(",");
 
