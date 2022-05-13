@@ -1,6 +1,11 @@
 function teste(){
-    document.getElementById("info").innerHTML = "Esse é um texto foda em JavaScript!";
+    
+   
+    var nome =  window.prompt("Informe seu nome: ");
+    var sobrenome = window.prompt("Informe seu sobrenome: ");
+    document.getElementById("info").innerHTML = ("Olá " + nome + " " + sobrenome + " !!");  
+
 }
 function teste2(){
-    document.getElementById("info").innerHTML = "Olá, Mundo!";
+    document.getElementById("info").innerHTML = "Olá, Mundo!" ;
 }
