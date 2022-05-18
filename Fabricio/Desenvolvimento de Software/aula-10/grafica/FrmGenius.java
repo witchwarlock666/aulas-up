@@ -20,8 +20,8 @@ public class FrmGenius extends JFrame {
     private JButton blue;
     private JButton yellow;
 
-    public FrmGenius() {
-        this.logicaGenius = new Genius();
+    public FrmGenius(Genius logicaGenius) {
+        this.logicaGenius = logicaGenius;
 
         this.setLayout(new GridLayout(2, 2, 10, 10));
 
@@ -49,43 +49,19 @@ public class FrmGenius extends JFrame {
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        red.addActionListener(new ActionBotao(Cor.VERMELHO, logicaGenius));
+        green.addActionListener(new ActionBotao(Cor.VERDE, logicaGenius));
+        blue.addActionListener(new ActionBotao(Cor.AZUL, logicaGenius));
+        yellow.addActionListener(new ActionBotao(Cor.AMARELO, logicaGenius));
     }
 
     public void animarBotoes() {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                    for (Cor cor : logicaGenius.getCoresSorteadas()) {
-                        switch (cor) {
-                            case VERMELHO:
-                                red.setBackground(Color.GRAY);
-                                Thread.sleep(500);
-                                red.setBackground(Color.RED);
-                                break;
-                            case VERDE:
-                                green.setBackground(Color.GRAY);
-                                Thread.sleep(500);
-                                green.setBackground(Color.GREEN);
-                                break;
-                            case AZUL:
-                                blue.setBackground(Color.GRAY);
-                                Thread.sleep(500);
-                                blue.setBackground(Color.BLUE);
-                                break;
-                            case AMARELO:
-                                yellow.setBackground(Color.GRAY);
-                                Thread.sleep(500);
-                                yellow.setBackground(Color.YELLOW);
-                                break;
-                        }
-                    }
-                }
-                catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        };
+        ThreadAnimacoesBotoes animacao = new ThreadAnimacoesBotoes(red, green, blue, yellow, logicaGenius);
+        animacao.run();
+    }
+
+    public void sortear() {
+        logicaGenius.sortearCor();
     }
 }
