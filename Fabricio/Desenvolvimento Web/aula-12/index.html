@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forms</title>
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+
+    <body>
+        <form action="./coleta.html" method="post">
+            <div class="form-horizontal">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <label for="primeiroNome" class="control-label">Nome</label>
+                        <input onmouseover="aaa(this)" type="text" name="primeiroNome" id="primeiroNome" value=""
+                            class="form-control" placeholder="Nome">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sobrenome" class="control-label">Sobrenome</label>
+                        <input type="text" name="sobrenome" id="sobrenome" value="" class="form-control"
+                            placeholder="Sobrenome">
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <label for="email" class="control-label">E-mail</label>
+                        <input type="email" name="email" id="email" value="" class="form-control" placeholder="email@mail.com">
+                    </div> -->
+                    <div class="col-md-4" id="mes-div" style="display: none;">
+                        <p id="message" class="control-label"></p>
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="Clicar" onclick="ex1()">
+            <!-- <input type="submit" value="Submit" class="btn btn-xs btn-success"> -->
+        </form>
+
+        <script src="./scripts/scripts.js"></script>
+    </body>
+
+</html>
