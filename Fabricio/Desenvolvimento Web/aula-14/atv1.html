@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atv1</title>
+</head>
+<body>
+
+    <style>
+        input {
+            display: block;
+        }
+    </style>
+
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome" placeholder="Nome">
+    <label for="sobrenome">Sobrenome</label>
+    <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+    <label for="cep">CEP</label>
+    <input type="text" id="cep" onkeyup="numbers('cep')" onblur="pesquisacep(this.value)" name="cep" placeholder="Cep">
+    <label for="rua">Rua</label>
+    <input type="text" id="rua" name="rua" placeholder="Rua">
+    <label for="numero">Numero</label>
+    <input type="text" id="numero" onkeyup="numbers('numero')" name="numero" placeholder="Numero">
+    <label for="bairro">Bairro</label>
+    <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+    <label for="cidade">Cidade</label>
+    <input type="text" id="cidade" name="cidade" placeholder="Cidade">
+    <label for="uf">UF</label>
+    <input type="text" id="uf" name="uf" placeholder="UF">
+
+    <input type="button" value="Click" onclick="present()">
+
+    <script>
+         function numbers(e) {
+             let a = document.getElementById(e);
+             let txt = a.value.match(/\d+/g);
+             a.value = txt;
+         }
+
+         function present() {
+             nome = document.getElementById("nome").value;
+             sobrenome = document.getElementById("sobrenome").value;
+             cep = document.getElementById("cep").value;
+             rua = document.getElementById("rua").value;
+             numero = document.getElementById("numero").value;
+             bairro = document.getElementById("bairro").value;
+             cidade = document.getElementById("cidade").value;
+             uf = document.getElementById("uf").value;
+
+             alert("Nome completo: " + nome + " " + sobrenome + "\nCEP: " + cep + "\nEndereço: " + rua + ", " + numero + " - " + bairro + ", " + cidade + " - " + uf)
+         }
+    </script>
+
+    <script src="./Scripts/cep.js"></script>
+
+</body>
+</html>
