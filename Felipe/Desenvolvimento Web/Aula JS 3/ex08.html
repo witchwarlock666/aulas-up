@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 7</title>
+</head>
+<body>
+    <input type="color" onchange="ex08()" name="color" id="cor-do-rapaz">
+   <br></br>
+    <button id="base" > Trocar cor</button>
+    <script>
+        function ex08(){
+            // Diz o que o elemento vai faze
+            //var elemento = document.body.style.backgroundColor(document.getElementById("cor-do-rapaz").value);
+            document.body.style.backgroundColor = document.getElementById("cor-do-rapaz").value;
+            // Aplica a cor
+            // var lista = document.body;
+            // lista.appendChild(elemento);         
+        }       
+    </script>
+</body>
+</html>

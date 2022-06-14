@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 6</title>
+</head>
+<body>
+    <button id="base" onclick="ex06()"> Clicae</button>
+    <script>
+         //verificador para imprimir só uma vez 
+         var verificador = true;
+        function ex06(){
+            var elementoPai = document.body;
+            var elemento = document.createElement("h1");
+            var txt = document.createTextNode("Olá!");
+            elemento.appendChild(txt);
+
+            // Insere o elemento no prox espaço livre
+            //elementoPai.appendChild(elemento);
+            if(verificador){
+                 // insere o elemento antes do id informado
+                elementoPai.insertBefore(elemento, document.getElementById("base"));
+                verificador = false;
+            }
+            
+        }
+    </script>
+</body>
+</html>
