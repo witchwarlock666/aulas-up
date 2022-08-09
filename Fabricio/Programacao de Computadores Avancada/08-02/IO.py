@@ -1,0 +1,2 @@
+nome, n1, n2, n3, n4 = input("Informe o nome do aluno: "), float(input("Informe a nota 1: ")), float(input("Informe a nota 2: ")), float(input("Informe a nota 3: ")), float(input("Informe a nota 4: "))
+print("Media: ", (n1 + n2 + n3 + n4) / 4)
