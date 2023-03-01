@@ -8,8 +8,8 @@ tabINSS = [1212.0, 2427.35, 3641.03, 7087.22]
 
 while cont:
     nome = input("Funcionário: ")
-    hr = input("Horas trabalhadas: ")
-    valHr = input("Valora da hora: ")
+    hr = int(input("Horas trabalhadas: "))
+    valHr = int(input("Valora da hora: "))
 
     bruto = valHr * hr
     ir = 0
@@ -44,7 +44,7 @@ while cont:
 
     cont2 = True
     while cont2:
-        x = input("Continuar? (s/n) ").upper
+        x = input("Continuar? (s/n) ").upper()
         if x in "SN":
             cont2 = False
             if x == "N":
