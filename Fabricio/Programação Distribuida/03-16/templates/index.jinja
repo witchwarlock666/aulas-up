@@ -1,0 +1,15 @@
+{% extends "./shared/_layout.jinja" %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %}
+<form action="/" method="POST">
+    <label>Name</label>
+    <input type="text" name="name" id="name">
+    <label>Data</label>
+    <input type="text" name="data" id="data">
+    <label>Aaa</label>
+    <input type="text" name="aaa" id="aaa">
+    <input type="submit">
+</form>
+{% endblock %}
